@@ -21,15 +21,25 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace BaksDev\Auth\Vk\UseCase\User\Auth\Active;
 
-namespace BaksDev\Auth\Vk;
+use BaksDev\Auth\Vk\Entity\Event\Active\AccountVkActiveInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-
-class BaksDevAuthVkBundle extends AbstractBundle
+class AccountVkActiveDTO implements AccountVkActiveInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    #[Assert\NotBlank]
+    private bool $active;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function getActive(): bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
+    }
 }

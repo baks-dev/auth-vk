@@ -23,13 +23,31 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Auth\Vk;
+namespace BaksDev\Auth\Vk\UseCase\Admin\Delete;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-class BaksDevAuthVkBundle extends AbstractBundle
+use BaksDev\Auth\Vk\Entity\AccountVk;
+use BaksDev\Auth\Vk\Entity\Event\AccountVkEvent;
+use BaksDev\Core\Entity\AbstractHandler;
+
+final class AccountVkDeleteHandler extends AbstractHandler
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    /** @see AccountVk */
+    public function handle(
+        AccountVkDeleteDTO $command
+    ): string|AccountVk
+    {
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+        $this->setCommand($command);
+
+        $this->preEventRemove(AccountVk::class, AccountVkEvent::class);
+
+        $this->flush();
+
+
+        $this->messageDispatch->addClearCacheOther('auth-vk');
+
+        return $this->main;
+
+    }
 }

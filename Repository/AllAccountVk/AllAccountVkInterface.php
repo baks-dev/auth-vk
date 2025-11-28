@@ -21,15 +21,13 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace BaksDev\Auth\Vk\Repository\AllAccountVk;
 
-namespace BaksDev\Auth\Vk;
+use BaksDev\Core\Services\Paginator\PaginatorInterface;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-class BaksDevAuthVkBundle extends AbstractBundle
+interface AllAccountVkInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
-
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    /** Метод возвращает paginator */
+    public function findAll(): PaginatorInterface;
 }

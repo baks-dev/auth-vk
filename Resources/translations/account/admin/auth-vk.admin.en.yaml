@@ -1,0 +1,23 @@
+page:
+  index: 'Vk accounts of users'
+  new: 'Add User Vk account'
+  edit: 'Edit User Vk account'
+  delete: 'Delete Users Vk account'
+
+breadcrumb:
+  index: 'Vk accounts of users'
+  new: 'Add User Vk account'
+  edit: 'Edit User Vk account'
+  delete: 'Delete Users Vk account'
+
+success:
+  new: 'Users Vk account added successfully'
+  update: 'Users Vk account updated successfully'
+  delete: 'Users Vk account has been successfully deleted to trash'
+  restore: 'Users Vk account successfully restored'
+
+danger:
+  new: '%s: Error adding user Vk account'
+  update: '%s: Error updating user Vk account'
+  delete: '%s: Error deleting users Vk account'
+  restore: '%s: Error restoring users Vk account'

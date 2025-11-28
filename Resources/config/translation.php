@@ -21,15 +21,15 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-namespace BaksDev\Auth\Vk;
+use BaksDev\Auth\Vk\BaksDevAuthVkBundle;
+use Symfony\Config\FrameworkConfig;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+return static function(FrameworkConfig $config) {
 
-class BaksDevAuthVkBundle extends AbstractBundle
-{
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    $config
+        ->translator()
+        ->paths([BaksDevAuthVkBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Resources', 'translations', ''])]); // .'Resources/translations/']);
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
-}
+};

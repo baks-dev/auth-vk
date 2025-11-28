@@ -23,13 +23,62 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Auth\Vk;
+namespace BaksDev\Auth\Vk\Api\UserInfo;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-class BaksDevAuthVkBundle extends AbstractBundle
+use BaksDev\Auth\Vk\Type\AuthVkIdentifier\VkIdentifier;
+
+final readonly class VkUserInfoDTO
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    public function __construct(
+        private string $user_id,
+        private ?string $first_name,
+        private ?string $last_name,
+        private ?string $avatar,
+        private ?string $email,
+        private ?int $sex,
+        private bool $verified,
+        private ?string $birthday
+    ) {}
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function getUserId(): VkIdentifier
+    {
+        return new VkIdentifier($this->user_id);
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->first_name;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->last_name;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function getSex(): ?int
+    {
+        return $this->sex;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->verified;
+    }
+
+    public function getBirthday(): ?string
+    {
+        return $this->birthday;
+    }
+
 }

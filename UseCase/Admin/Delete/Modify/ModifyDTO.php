@@ -21,15 +21,31 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace BaksDev\Auth\Vk\UseCase\Admin\Delete\Modify;
 
-namespace BaksDev\Auth\Vk;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Auth\Vk\Entity\Modify\AccountVkModifyInterface;
+use BaksDev\Core\Type\Modify\Modify\ModifyActionDelete;
+use BaksDev\Core\Type\Modify\ModifyAction;
+use Symfony\Component\Validator\Constraints as Assert;
 
-class BaksDevAuthVkBundle extends AbstractBundle
+/** @see AccountVkModify */
+final class ModifyDTO implements AccountVkModifyInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    /**
+     * Модификатор
+     */
+    #[Assert\NotBlank]
+    private readonly ModifyAction $action;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function __construct()
+    {
+        $this->action = new ModifyAction(ModifyActionDelete::class);
+    }
+
+    public function getAction(): ModifyAction
+    {
+        return $this->action;
+    }
 }
+

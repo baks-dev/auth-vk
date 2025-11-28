@@ -21,15 +21,9 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace BaksDev\Auth\Vk\Services\AuthVkUri;
 
-namespace BaksDev\Auth\Vk;
-
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-
-class BaksDevAuthVkBundle extends AbstractBundle
+interface AuthVkUriGeneratorInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
-
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function getVkAutUri(): string;
 }

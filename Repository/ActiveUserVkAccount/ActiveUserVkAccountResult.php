@@ -21,15 +21,24 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace BaksDev\Auth\Vk\Repository\ActiveUserVkAccount;
 
-namespace BaksDev\Auth\Vk;
+use BaksDev\Users\User\Type\Id\UserUid;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-
-class BaksDevAuthVkBundle extends AbstractBundle
+final readonly class ActiveUserVkAccountResult
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    public function __construct(
+        private string $account,
+        private bool $active,
+    ) {}
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function getAccount(): UserUid
+    {
+        return new UserUid ($this->account);
+    }
+
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
 }

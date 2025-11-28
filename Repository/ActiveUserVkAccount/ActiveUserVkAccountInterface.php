@@ -21,15 +21,11 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace BaksDev\Auth\Vk\Repository\ActiveUserVkAccount;
 
-namespace BaksDev\Auth\Vk;
+use BaksDev\Auth\Vk\Type\AuthVkIdentifier\VkIdentifier;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-
-class BaksDevAuthVkBundle extends AbstractBundle
+interface ActiveUserVkAccountInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
-
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function findByVkId(VkIdentifier $vkid): ActiveUserVkAccountResult|false;
 }

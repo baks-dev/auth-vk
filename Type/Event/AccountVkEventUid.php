@@ -23,13 +23,17 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Auth\Vk;
+namespace BaksDev\Auth\Vk\Type\Event;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use App\Kernel;
+use BaksDev\Core\Type\UidType\Uid;
+use Symfony\Component\Uid\AbstractUid;
 
-class BaksDevAuthVkBundle extends AbstractBundle
+
+final class AccountVkEventUid extends Uid
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    public const string TEST = '019a97b4-6392-7795-b9bd-ec74f8d2ab63';
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public const string TYPE = 'account_vk_event';
+
 }

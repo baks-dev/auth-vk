@@ -1,0 +1,60 @@
+{% trans_default_domain('auth-vk.admin') %}
+
+<tr class="vertical-middle">
+
+    <td class="text-nowrap">
+        {# Пользовательское меню #}
+        {{ include(_self|replace({ "card.html.twig": "_usecase.html.twig" })) }}
+    </td>
+
+    <td class="text-center">
+        {% if item.vkStatus %}
+            <div class="badge text-bg-success">Активный</div>
+        {% else %}
+            <div class="badge text-bg-danger">Неактивный</div>
+        {% endif %}
+    </td>
+
+    <td class="text-nowrap w-25">
+        <a href="{{ path('auth-vk:admin.newedit.edit', { id: item.event }) }}"
+           class="text-decoration-none fw-bolder modal-link disabled"
+           data-bs-toggle="modal"
+           data-bs-target="#modal"
+        > {{ item.username }} </a>
+
+    </td>
+
+    <td class="w-100">
+        {{ item.vkUserId }}
+    </td>
+
+{#    <td class="w-100 text-center">#}
+
+{#        #}{# TODO #}
+{#        {{ item.email ? item.email : '' }}#}
+{#    </td>#}
+
+
+    <td class="text-center">
+        {{ item.vkUpdate|date('d.m.Y H:i') }}
+    </td>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <td class="ps-5">
+            {# Перейти в режим пользователя #}
+
+            {% if app.user.id != item.id %}
+                <a href='{{ path('users-user:admin.switch', { id : item.id  }) }}'
+                   class="badge text-bg-light text-decoration-none">
+                    Авторизоваться
+                </a>
+            {% else %}
+                <span class="badge text-bg-success text-decoration-none">
+                    Активный
+                </span>
+            {% endif %}
+
+
+        </td>
+    {% endif %}
+</tr>

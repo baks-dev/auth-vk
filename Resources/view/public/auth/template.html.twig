@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% block javascripts %}
+    {% endblock %}
+
+    <script nonce="{{ csp_nonce() }}">
+
+        /* Проверяем, открыто ли это окно как всплывающее (а не в обычной вкладке) */
+        if(window.opener && window.opener !== window)
+        {
+
+            /* отправляем сигнал родительскому окну чтобы обновить UI */
+            try
+            {
+                window.opener.postMessage({type: 'VK_AUTH_SUCCESS'}, '*');
+            } catch(e)
+            {
+                /* Игнорируем ошибки (если домены разные и postMessage ограничен) */
+            }
+
+            /* Закрываем текущее окно */
+            window.close();
+        } else
+        {
+            /* Если окно не было открыто через window.open — просто показываем сообщение */
+            document.body.innerHTML = '<p>Авторизация завершена. Окно закроется автоматически</p>';
+            window.location.replace("{{ path('core:public.homepage') }}");
+        }
+
+    </script>
+
+</head>
+<body>
+{% block body %}{% endblock %}
+</body>
+</html>

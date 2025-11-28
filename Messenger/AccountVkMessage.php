@@ -23,13 +23,33 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Auth\Vk;
+namespace BaksDev\Auth\Vk\Messenger;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Auth\Vk\Type\Event\AccountVkEventUid;
+use BaksDev\Users\User\Type\Id\UserUid;
 
-class BaksDevAuthVkBundle extends AbstractBundle
+final class AccountVkMessage
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    /** Идентификатор  */
+    private string $id;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    /** Идентификатор события  */
+    private string $event;
+
+    public function __construct(UserUid $id, AccountVkEventUid $event)
+    {
+        $this->id = (string) $id;
+        $this->event = (string) $event;
+    }
+
+    public function getId(): UserUid
+    {
+        return new UserUid($this->id);
+    }
+
+    public function getEvent(): AccountVkEventUid
+    {
+        return new AccountVkEventUid($this->event);
+    }
+
 }

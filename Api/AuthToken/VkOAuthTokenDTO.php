@@ -23,13 +23,58 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Auth\Vk;
+namespace BaksDev\Auth\Vk\Api\AuthToken;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-
-class BaksDevAuthVkBundle extends AbstractBundle
+final readonly class VkOAuthTokenDTO
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    public function __construct(
+        private string $access_token,
+        private int $expires_in,
+        private string $id_token,
+        private string $refresh_token,
+        private string $token_type,
+        private int|string $user_id,
+        private string $state,
+        private string $scope,
+    ) {}
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function getScope(): string
+    {
+        return $this->scope;
+    }
+
+    public function getState(): string
+    {
+        return $this->state;
+    }
+
+    public function getIdToken(): string
+    {
+        return $this->id_token;
+    }
+
+    public function getUserId(): string
+    {
+        return (string) $this->user_id;
+    }
+
+    public function getAccessToken(): string
+    {
+        return $this->access_token;
+    }
+
+    public function getExpiresIn(): int
+    {
+        return $this->expires_in;
+    }
+
+    public function getRefreshToken(): string
+    {
+        return $this->refresh_token;
+    }
+
+    public function getTokenType(): string
+    {
+        return $this->token_type;
+    }
 }

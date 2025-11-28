@@ -1,0 +1,39 @@
+{% trans_default_domain 'auth-vk.admin' %}
+
+<div class="modal-dialog modal-dialog-centered" style="max-width: 800px;">
+
+    {{ form_start(form) }}
+    <div class="modal-content p-3 border-bottom border-5 border-primary">
+
+        <div class="modal-header">
+            <h5 class="modal-title">
+                {{ 'page.edit'|trans }}  {{ name }}
+            </h5>
+        </div>
+
+        <div class="modal-body">
+{#             TODO#}
+            {{ form_row(form.active.active, { label: 'Аккаунт активен' }) }}
+
+        </div>
+
+        <div class="modal-footer ">
+            <div class="mt-3 gap-3 d-flex">
+                {# Отмена #}
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                    {{ 'btn.cancel'|trans({}, 'core.btn') }}
+                </button>
+
+                {# Сохранить #}
+                {{ form_widget(form.account_vk, { label: '
+                    <span>'~ 'btn.update'|trans({}, 'core.btn') ~'</span>
+                    <span class="spinner-border spinner-border-sm vertical-middle d-none"></span>
+			    '}) }}
+            </div>
+        </div>
+
+    </div>
+
+    {{ form_end(form) }}
+</div>
+

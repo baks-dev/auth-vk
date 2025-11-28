@@ -21,15 +21,26 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-namespace BaksDev\Auth\Vk;
+use BaksDev\Auth\Vk\BaksDevAuthVkBundle;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+return static function(ContainerConfigurator $configurator) {
 
-class BaksDevAuthVkBundle extends AbstractBundle
-{
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    $services = $configurator->services()
+        ->defaults()
+        ->autowire()
+        ->autoconfigure();
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
-}
+    $NAMESPACE = BaksDevAuthVkBundle::NAMESPACE;
+    $PATH = BaksDevAuthVkBundle::PATH;
+
+    $services->load($NAMESPACE, $PATH)
+        ->exclude([
+            $PATH.'{Entity,Resources,Type}',
+            $PATH.'**'.DIRECTORY_SEPARATOR.'*Message.php',
+            $PATH.'**'.DIRECTORY_SEPARATOR.'*DTO.php',
+            $PATH.'**'.DIRECTORY_SEPARATOR.'*Test.php',
+        ]);
+
+};
