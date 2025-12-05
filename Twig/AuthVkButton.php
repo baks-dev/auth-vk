@@ -64,19 +64,19 @@ class AuthVkButton extends AbstractExtension
 
     public function vkButtonTemplate(Environment $twig): string
     {
-        $url = $this->authVkUriGenerator->getVkAutUri() ?? '';
+        $uri = $this->authVkUriGenerator->getVkAutUri() ?? '';
 
         try
         {
             return $twig->render('@Template/auth-vk/twig/auth_uri/auth-button.html.twig', [
-                'url' => $url,
+                'uri' => $uri,
                 'version' => $this->version,
             ]);
         }
         catch(LoaderError)
         {
             return $twig->render('@auth-vk/twig/auth_uri/auth-button.html.twig', [
-                'url' => $url,
+                'uri' => $uri,
                 'version' => $this->version,
             ]);
         }
