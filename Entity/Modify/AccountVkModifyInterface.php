@@ -21,15 +21,11 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace BaksDev\Auth\Vk\Entity\Modify;
 
-namespace BaksDev\Auth\Vk;
+use BaksDev\Core\Type\Modify\ModifyAction;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-
-class BaksDevAuthVkBundle extends AbstractBundle
+interface AccountVkModifyInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
-
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function getAction(): ModifyAction;
 }

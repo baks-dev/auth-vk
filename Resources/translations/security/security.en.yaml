@@ -1,0 +1,15 @@
+ROLE_ACCOUNT_VK:
+  name: 'VK accounts'
+  desc: 'List of registered VK users'
+
+ROLE_ACCOUNT_VK_INDEX:
+  name: 'View'
+  desc: ''
+
+ROLE_ACCOUNT_VK_EDIT:
+  name: 'Edit'
+  desc: ''
+
+ROLE_ACCOUNT_VK_DELETE:
+  name: 'Delete'
+  desc: ''

@@ -1,0 +1,17 @@
+page:
+  index: 'Авторизация Vk'
+
+breadcrumb:
+  index: 'Авторизация пользователя Vk'
+
+success:
+  code: 'Авторизация успешно выполнена'
+
+danger:
+  code: 'Ошибка при авторизации пользователя Vk'
+
+user:
+  active:
+    error:
+      header: "Ошибка"
+      message: 'Ошибка при авторизации'

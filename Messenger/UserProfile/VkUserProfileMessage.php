@@ -21,15 +21,35 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace BaksDev\Auth\Vk\Messenger\UserProfile;
 
-namespace BaksDev\Auth\Vk;
+use BaksDev\Auth\Vk\Api\UserInfo\VkUserInfoDTO;
+use BaksDev\Users\User\Type\Id\UserUid;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-
-class BaksDevAuthVkBundle extends AbstractBundle
+final class VkUserProfileMessage
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    /** Идентификатор */
+    private string $id;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    /** Идентификатор */
+    private string $username;
+
+    public function __construct(
+        UserUid|string $id,
+        VkUserInfoDTO|string $infoDTO,
+    ) {
+        $this->id = (string) $id;
+        $this->username = $infoDTO->getFirstName() . ' ' . $infoDTO->getLastName();
+    }
+
+    public function getId(): UserUid
+    {
+        return new UserUid($this->id);
+    }
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
 }

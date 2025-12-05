@@ -21,15 +21,29 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace BaksDev\Auth\Vk\UseCase\User\Auth\Invariable;
 
-namespace BaksDev\Auth\Vk;
+use BaksDev\Auth\Vk\Entity\Event\Invariable\AccountVkInvariableInterface;
+use BaksDev\Auth\Vk\Type\AuthVkIdentifier\VkIdentifier;
+use Symfony\Component\Validator\Constraints as Assert;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-
-class BaksDevAuthVkBundle extends AbstractBundle
+final class AccountVkInvariableDTO implements AccountVkInvariableInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    /**
+     * Идентификатор vk user_id
+     */
+    #[Assert\NotBlank]
+    private VkIdentifier $vkid;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function getVkid(): VkIdentifier
+    {
+        return $this->vkid;
+    }
+
+    public function setVkid(VkIdentifier $vkid): self
+    {
+        $this->vkid = $vkid;
+        return $this;
+    }
+
 }

@@ -23,13 +23,31 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Auth\Vk;
+namespace BaksDev\Auth\Vk\UseCase\User\Auth\Active;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-class BaksDevAuthVkBundle extends AbstractBundle
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+final class AccountVkActiveForm extends AbstractType
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        
+        $builder->add('active', CheckboxType::class, [
+            'required' => false,
+        ]);
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => AccountVkActiveDTO::class,
+            'method' => 'POST',
+            'attr' => ['class' => 'w-100'],
+        ]);
+    }
 }

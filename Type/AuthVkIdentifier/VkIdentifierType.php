@@ -21,15 +21,36 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace BaksDev\Auth\Vk\Type\AuthVkIdentifier;
 
-namespace BaksDev\Auth\Vk;
+use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\Type;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-
-class BaksDevAuthVkBundle extends AbstractBundle
+final class VkIdentifierType extends Type
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
+    {
+        return new VkIdentifier($value)->getValue();
+    }
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?VkIdentifier
+    {
+        return !empty($value) ? new VkIdentifier($value) : null;
+    }
+
+
+    public function getName(): string
+    {
+        return VkIdentifier::TYPE;
+    }
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
+    }
+
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
+    {
+        return $platform->getStringTypeDeclarationSQL($column);
+    }
 }

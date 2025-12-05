@@ -21,15 +21,51 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace BaksDev\Auth\Vk\Repository\AllAccountVk;
 
-namespace BaksDev\Auth\Vk;
+use BaksDev\Auth\Vk\Type\AuthVkIdentifier\VkIdentifier;
+use BaksDev\Auth\Vk\Type\Event\AccountVkEventUid;
+use BaksDev\Users\User\Type\Id\UserUid;
+use DateTimeImmutable;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-
-class BaksDevAuthVkBundle extends AbstractBundle
+final readonly class AllAccountVkResult
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    public function __construct(
+        private string $id,
+        private string $event,
+        private bool $vk_status,
+        private string $vk_update,
+        private string $vk_user_id,
+        private ?string $username,
+    ) {}
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function getId(): UserUid
+    {
+        return new UserUid ($this->id);
+    }
+
+    public function getEvent(): AccountVkEventUid {
+        return new AccountVkEventUid($this->event);
+    }
+
+    public function getVkStatus(): bool
+    {
+        return $this->vk_status;
+    }
+
+    public function getVkUpdate(): DateTimeImmutable
+    {
+        return new DateTimeImmutable($this->vk_update);
+    }
+
+    public function getVkUserId(): VkIdentifier
+    {
+        return new VkIdentifier($this->vk_user_id);
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
 }

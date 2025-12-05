@@ -1,0 +1,22 @@
+<main class="main d-print-none container">
+
+    <div class="container mt-3">
+        {{ include(_self|replace({ "content.html.twig": "breadcrumb.html.twig" })) }}
+    </div>
+
+    <div class="container d-flex justify-content-center align-items-center gap-4 mt-3">
+
+        <div class="w-25">
+            <img src="/assets/{{ version }}/img/empty.png" data-src='/assets/{{ version }}/img/edit.webp' class="lazy"
+                 width="350">
+        </div>
+
+        <div class="w-100">
+            <div class="modal d-block position-relative">
+                {{ include(_self|replace({ "content.html.twig": "_form.html.twig" })) }}
+            </div>
+        </div>
+    </div>
+
+</main>
+

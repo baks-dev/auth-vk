@@ -1,0 +1,12 @@
+page:
+  index: 'Authorization Vk'
+
+breadcrumb:
+  index: 'User authorization Vk'
+
+success:
+  code: 'User successfully authorizated'
+
+danger:
+  code: 'Error while user authorization'
+ 

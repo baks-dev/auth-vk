@@ -12,6 +12,16 @@
 $ composer require baks-dev/auth-vk
 ```
 
+## Создание приложения
+1. Перейти по ссылке "Мои приложения"
+   https://id.vk.com/about/business/go/accounts/256569/apps
+   выбрать Web, и ввеcти название приложения.
+2. Далее указать "Базовый домен" и "Доверенный Redirect URL" и нажать "Создать приложение".
+3. В настройках приложения получить Client ID.
+5. Указать параметры VK_CLIENT_ID (значение Client ID) и VK_CODE_VERIFIER в .env.
+6. Для генерации значения для VK_CODE_VERIFIER можно использовать https://tonyxu-io.github.io/pkce-generator/
+7. Документация для интеграции доступна по ссылке https://id.vk.com/about/business/go/docs/ru/vkid/latest/vk-id/connection/start-integration/auth-without-sdk/auth-without-sdk-web
+
 ## Дополнительно
 
 Установка конфигурации и файловых ресурсов:

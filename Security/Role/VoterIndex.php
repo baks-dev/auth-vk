@@ -23,13 +23,24 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Auth\Vk;
+namespace BaksDev\Auth\Vk\Security\Role;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Users\Profile\Group\Security\RoleInterface;
+use BaksDev\Users\Profile\Group\Security\VoterInterface;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
-class BaksDevAuthVkBundle extends AbstractBundle
+#[AutoconfigureTag('baks.security.voter')]
+class VoterIndex implements VoterInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    public const string VOTER = 'INDEX';
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public static function getVoter(): string
+    {
+        return Role::ROLE.'_'.self::VOTER;
+    }
+
+    public function equals(RoleInterface $role): bool
+    {
+        return Role::ROLE === $role->getRole();
+    }
 }

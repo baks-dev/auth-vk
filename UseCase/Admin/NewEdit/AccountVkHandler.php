@@ -23,13 +23,38 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Auth\Vk;
+namespace BaksDev\Auth\Vk\UseCase\Admin\NewEdit;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Auth\Vk\Entity\AccountVk;
+use BaksDev\Auth\Vk\Entity\Event\AccountVkEvent;
+use BaksDev\Auth\Vk\Messenger\AccountVkMessage;
+use BaksDev\Core\Entity\AbstractHandler;
 
-class BaksDevAuthVkBundle extends AbstractBundle
+final class AccountVkHandler extends AbstractHandler
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    /** @see AccountVk */
+    public function handle(AccountVkDTO $command): string|AccountVk
+    {
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+        $this->setCommand($command);
+
+        $this->preEventPersistOrUpdate(AccountVk::class, AccountVkEvent::class);
+
+
+        /** Валидация всех объектов */
+        if($this->validatorCollection->isInvalid())
+        {
+            return $this->validatorCollection->getErrorUniqid();
+        }
+
+        $this->flush();
+
+        /* Отправить сообщение в шину */
+        $this->messageDispatch->dispatch(
+            message: new AccountVkMessage($this->main->getId(), $this->main->getEvent()),
+            transport: 'auth-vk'
+        );
+
+        return $this->main;
+    }
 }

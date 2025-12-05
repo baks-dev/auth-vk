@@ -1,0 +1,16 @@
+
+ROLE_ACCOUNT_VK:
+  name: 'VK аккаунты'
+  desc: 'Список зрегистрированных пользователей VK'
+
+ROLE_ACCOUNT_VK_INDEX:
+  name: 'Просмотр'
+  desc: ''
+
+ROLE_ACCOUNT_VK_EDIT:
+  name: 'Редактировать'
+  desc: ''
+
+ROLE_ACCOUNT_VK_DELETE:
+  name: 'Удалить'
+  desc: ''

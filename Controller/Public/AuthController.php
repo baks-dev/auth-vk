@@ -23,13 +23,37 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Auth\Vk;
+namespace BaksDev\Auth\Vk\Controller\Public;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Core\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class BaksDevAuthVkBundle extends AbstractBundle
+#[AsController]
+final class AuthController extends AbstractController
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    #[Route('/vk/auth', name: 'public.auth', methods: ['GET', 'POST'])]
+    public function index(
+        Request $request,
+    ): Response
+    {
+
+        /* Вывести "toast" если пользователь не авторизовался через Auth Vk */
+        if(false === ($this->getUsr() instanceof UserInterface))
+        {
+            $this->addFlash
+            (
+                'danger',
+                'user.active.error.message',
+                'auth-vk.user',
+            );
+        }
+
+        return $this->render();
+    }
+
 }
