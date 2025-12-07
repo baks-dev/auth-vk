@@ -32,7 +32,6 @@ use BaksDev\Core\Entity\AbstractHandler;
 use BaksDev\Users\User\Entity\User;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 
-#[Autoconfigure(public: true)]
 final class VkAuthHandler extends AbstractHandler
 {
     /** @see */

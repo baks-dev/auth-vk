@@ -88,6 +88,12 @@ final class VkAuthenticator extends AbstractAuthenticator
 
                 /** Получить code device_id  */
                 $code = $request->query->get('code');
+
+                if(empty($code))
+                {
+                    return false;
+                }
+
                 $device_id = $request->query->get('device_id');
 
                 /** Отправка данных на id.vk дляя получения user_id */
