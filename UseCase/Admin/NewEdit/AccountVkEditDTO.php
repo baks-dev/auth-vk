@@ -35,7 +35,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /** @see AccountVkEvent */
-final class AccountVkDTO implements AccountVkEventInterface
+final class AccountVkEditDTO implements AccountVkEventInterface
 {
     /**
      * Идентификатор события

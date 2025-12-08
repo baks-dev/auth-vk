@@ -34,14 +34,14 @@ use Symfony\Component\DependencyInjection\Attribute\When;
 #[When(env: 'test')]
 class ActiveUserVkAccountRepositoryTest extends KernelTestCase
 {
+
     public function testRepository(): void
     {
 
         /** @var ActiveUserVkAccountInterface $ActiveUserVkAccountInterface */
         $ActiveUserVkAccountInterface = self::getContainer()->get(ActiveUserVkAccountInterface::class);
 
-        $test_vkid = '196591820';
-        $vkid = new VkIdentifier($test_vkid);
+        $vkid = new VkIdentifier(VkIdentifier::TEST);
 
         $ActiveUserVkAccount = $ActiveUserVkAccountInterface->findByVkId($vkid);
         //        dd($ActiveUserVkAccount);
@@ -58,7 +58,7 @@ class ActiveUserVkAccountRepositoryTest extends KernelTestCase
                 {
                     /* Вызываем метод */
                     $data = $method->invoke($ActiveUserVkAccount);
-//                    dump($data);
+                    // dump($data);
                 }
             }
         }

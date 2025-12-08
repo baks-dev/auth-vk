@@ -28,9 +28,9 @@ namespace BaksDev\Auth\Vk\Controller\Admin;
 
 use BaksDev\Auth\Vk\Entity\AccountVk;
 use BaksDev\Auth\Vk\Entity\Event\AccountVkEvent;
-use BaksDev\Auth\Vk\UseCase\Admin\NewEdit\AccountVkDTO;
-use BaksDev\Auth\Vk\UseCase\Admin\NewEdit\AccountVkForm;
-use BaksDev\Auth\Vk\UseCase\Admin\NewEdit\AccountVkHandler;
+use BaksDev\Auth\Vk\UseCase\Admin\NewEdit\AccountVkEditDTO;
+use BaksDev\Auth\Vk\UseCase\Admin\NewEdit\AccountVkEditForm;
+use BaksDev\Auth\Vk\UseCase\Admin\NewEdit\AccountVkEditHandler;
 use BaksDev\Core\Controller\AbstractController;
 use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
@@ -48,17 +48,17 @@ final class EditController extends AbstractController
     public function edit(
         Request $request,
         #[MapEntity] AccountVkEvent $AccountVkEvent,
-        AccountVkHandler $AccountVkHandler,
+        AccountVkEditHandler $AccountVkHandler,
     ): Response
     {
 
-        $AccountVkDTO = new AccountVkDTO();
+        $AccountVkDTO = new AccountVkEditDTO();
 
         $AccountVkEvent->getDto($AccountVkDTO);
 
         /* Форма  */
         $form = $this
-            ->createForm(AccountVkForm::class, $AccountVkDTO, [
+            ->createForm(AccountVkEditForm::class, $AccountVkDTO, [
                 'action' => $this->generateUrl(
                     'auth-vk:admin.newedit.edit',
                     ['id' => $AccountVkDTO->getEvent()]

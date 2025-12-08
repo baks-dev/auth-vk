@@ -25,36 +25,34 @@ declare(strict_types=1);
 
 namespace BaksDev\Auth\Vk\UseCase\Admin\NewEdit;
 
-use BaksDev\Auth\Vk\Entity\AccountVk;
-use BaksDev\Auth\Vk\Entity\Event\AccountVkEvent;
-use BaksDev\Auth\Vk\Messenger\AccountVkMessage;
-use BaksDev\Core\Entity\AbstractHandler;
 
-final class AccountVkHandler extends AbstractHandler
+use BaksDev\Auth\Vk\UseCase\User\Auth\Active\AccountVkActiveForm;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+final class AccountVkEditForm extends AbstractType
 {
-    /** @see AccountVk */
-    public function handle(AccountVkDTO $command): string|AccountVk
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
-        $this->setCommand($command);
+        $builder->add('active', AccountVkActiveForm::class, ['label' => false]);
 
-        $this->preEventPersistOrUpdate(AccountVk::class, AccountVkEvent::class);
-
-
-        /** Валидация всех объектов */
-        if($this->validatorCollection->isInvalid())
-        {
-            return $this->validatorCollection->getErrorUniqid();
-        }
-
-        $this->flush();
-
-        /* Отправить сообщение в шину */
-        $this->messageDispatch->dispatch(
-            message: new AccountVkMessage($this->main->getId(), $this->main->getEvent()),
-            transport: 'auth-vk'
+        /* Сохранить ******************************************************/
+        $builder->add(
+            'account_vk',
+            SubmitType::class,
+            ['label' => 'Save', 'label_html' => true, 'attr' => ['class' => 'btn-primary']]
         );
+    }
 
-        return $this->main;
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => AccountVkEditDTO::class,
+            'method' => 'POST',
+            'attr' => ['class' => 'w-100'],
+        ]);
     }
 }
