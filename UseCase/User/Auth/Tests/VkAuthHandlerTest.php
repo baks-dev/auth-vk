@@ -24,11 +24,15 @@
 namespace BaksDev\Auth\Vk\UseCase\User\Auth\Tests;
 
 use BaksDev\Auth\Vk\Entity\AccountVk;
+use BaksDev\Auth\Vk\Entity\Event\AccountVkEvent;
 use BaksDev\Auth\Vk\Type\AuthVkIdentifier\VkIdentifier;
 use BaksDev\Auth\Vk\UseCase\User\Auth\Active\AccountVkActiveDTO;
 use BaksDev\Auth\Vk\UseCase\User\Auth\Invariable\AccountVkInvariableDTO;
 use BaksDev\Auth\Vk\UseCase\User\Auth\VkAuthDTO;
 use BaksDev\Auth\Vk\UseCase\User\Auth\VkAuthHandler;
+use BaksDev\Users\User\Entity\User;
+use BaksDev\Users\User\Type\Id\UserUid;
+use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\Attribute\When;
@@ -37,13 +41,45 @@ use Symfony\Component\DependencyInjection\Attribute\When;
 #[When(env: 'test')]
 class VkAuthHandlerTest extends KernelTestCase
 {
-    const int VKID = 196591900; // TEST vk user_id
+
+    public static function setUpBeforeClass(): void
+    {
+
+        $container = self::getContainer();
+
+        /** @var EntityManagerInterface $em */
+        $em = $container->get(EntityManagerInterface::class);
+
+        $AccountVk = $em->getRepository(AccountVk::class)
+            ->find(UserUid::TEST);
+
+        if($AccountVk)
+        {
+            $em->remove($AccountVk);
+        }
+
+        /** @var AccountVkEvent $AccountEvent */
+        $AccountEvent = $em->getRepository(AccountVkEvent::class)
+            ->findBy(['account' => UserUid::TEST]);
+
+        foreach($AccountEvent as $remove)
+        {
+            $em->remove($remove);
+        }
+
+        $User = $em->getReference(User::class, new UserUid(UserUid::TEST));
+
+        if($User instanceof User)
+        {
+            $em->remove($User);
+        }
+
+
+        $em->flush();
+    }
 
     public function testUseCase(): void
     {
-        self::assertTrue(true);
-        return;
-
 
         $VkAuthDTO = new VkAuthDTO();
 
