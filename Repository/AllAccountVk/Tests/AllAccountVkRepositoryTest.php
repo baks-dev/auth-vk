@@ -39,8 +39,6 @@ class AllAccountVkRepositoryTest extends KernelTestCase
             }
         }
 
-        //        dd($results);
-
         self::assertTrue(true);
     }
 }
