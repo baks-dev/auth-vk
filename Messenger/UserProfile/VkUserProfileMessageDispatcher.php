@@ -33,12 +33,14 @@ use BaksDev\Users\Profile\UserProfile\UseCase\User\NewEdit\Info\InfoDTO;
 use BaksDev\Users\Profile\UserProfile\UseCase\User\NewEdit\UserProfileDTO;
 use BaksDev\Users\Profile\UserProfile\UseCase\User\NewEdit\UserProfileHandler;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
  * Создает профиль пользователя при создании аккаунта для авторизации через Vk
  */
+#[Autoconfigure(public: true)]
 #[AsMessageHandler(priority: 0)]
 final class VkUserProfileMessageDispatcher
 {
