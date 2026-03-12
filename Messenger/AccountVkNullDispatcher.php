@@ -29,7 +29,7 @@ namespace BaksDev\Auth\Vk\Messenger;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-#[Autoconfigure(public: true)]
+// #[Autoconfigure(public: true)]
 #[AsMessageHandler(priority: 0)]
 final class AccountVkNullDispatcher
 {

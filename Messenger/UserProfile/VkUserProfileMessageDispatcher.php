@@ -40,7 +40,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 /**
  * Создает профиль пользователя при создании аккаунта для авторизации через Vk
  */
-#[Autoconfigure(public: true)]
+// #[Autoconfigure(public: true)]
 #[AsMessageHandler(priority: 0)]
 final class VkUserProfileMessageDispatcher
 {
