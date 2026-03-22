@@ -44,7 +44,8 @@ final readonly class AllAccountVkResult
         return new UserUid ($this->id);
     }
 
-    public function getEvent(): AccountVkEventUid {
+    public function getEvent(): AccountVkEventUid
+    {
         return new AccountVkEventUid($this->event);
     }
 

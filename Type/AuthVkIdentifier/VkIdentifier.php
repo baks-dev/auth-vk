@@ -25,12 +25,6 @@ final class VkIdentifier
         $this->value = $value;
     }
 
-    public function __toString(): string
-    {
-        return $this->getValue();
-    }
-
-
     public function getValue(): string
     {
         if(empty($this->value))
@@ -39,5 +33,10 @@ final class VkIdentifier
         }
 
         return $this->value;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getValue();
     }
 }

@@ -43,7 +43,7 @@ final class AccountVkEditForm extends AbstractType
         $builder->add(
             'account_vk',
             SubmitType::class,
-            ['label' => 'Save', 'label_html' => true, 'attr' => ['class' => 'btn-primary']]
+            ['label' => 'Save', 'label_html' => true, 'attr' => ['class' => 'btn-primary']],
         );
     }
 

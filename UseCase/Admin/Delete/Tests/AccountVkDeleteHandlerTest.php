@@ -43,6 +43,11 @@ use Symfony\Component\DependencyInjection\Attribute\When;
 class AccountVkDeleteHandlerTest extends KernelTestCase
 {
 
+    public static function tearDownAfterClass(): void
+    {
+        VkAuthHandlerTest::setUpBeforeClass();
+    }
+
     #[DependsOnClass(AccountVkEditHandlerTest::class)]
     public function testUseCase(): void
     {
@@ -55,7 +60,7 @@ class AccountVkDeleteHandlerTest extends KernelTestCase
         if($AccountVk instanceof AccountVk)
         {
             $AccountVkEvent = $em->getRepository(AccountVkEvent::class)->find(
-                $AccountVk->getEvent()
+                $AccountVk->getEvent(),
             );
 
             /** @var AccountVkDeleteDTO $AccountVkDeleteDTO */
@@ -71,10 +76,5 @@ class AccountVkDeleteHandlerTest extends KernelTestCase
             self::assertTrue(($handle instanceof AccountVk), $handle.': Ошибка AccountVk');
 
         }
-    }
-
-    public static function tearDownAfterClass(): void
-    {
-        VkAuthHandlerTest::setUpBeforeClass();
     }
 }

@@ -86,8 +86,8 @@ final class VkUserProfileMessageDispatcher
             $this->logger->error(
                 sprintf(
                     'Ошибка при создании профиля пользователя с идентификатором: %s',
-                    $UserUid
-                )
+                    $UserUid,
+                ),
             );
 
             return false;

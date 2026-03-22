@@ -162,9 +162,9 @@ final class VkAuthenticator extends AbstractAuthenticator
                         $this->logger->critical(
                             message: sprintf(
                                 'Ошибка создания Vk аккаунта c user_id: %s',
-                                $VkUserId
+                                $VkUserId,
                             ),
-                            context: [self::class.':'.__LINE__,]
+                            context: [self::class.':'.__LINE__,],
                         );
 
                         return null;
@@ -177,15 +177,15 @@ final class VkAuthenticator extends AbstractAuthenticator
                         $VkUserProfile = $this->messageDispatch->dispatch(
                             message: new VkUserProfileMessage(
                                 $AccountVk->getId(),
-                                $VkUserInfoDTO
+                                $VkUserInfoDTO,
                             ));
 
                         if(false === $VkUserProfile)
                         {
                             $this->logger->error(sprintf(
                                     'Ошибка при создании профиля для Vk пользователя c идентификатором %s',
-                                    $VkUserInfoDTO->getUserId()
-                                )
+                                    $VkUserInfoDTO->getUserId(),
+                                ),
                             );
 
                             return new SelfValidatingPassport(
@@ -203,7 +203,7 @@ final class VkAuthenticator extends AbstractAuthenticator
                         /* Отправляем сообщение в шину */
                         $this->messageDispatch->dispatch(
                             message: new CreateAccountMessage($AccountVk->getId(), $AccountEmail),
-                            transport: 'auth-vk'
+                            transport: 'auth-vk',
                         );
                     }
                 }
@@ -228,7 +228,7 @@ final class VkAuthenticator extends AbstractAuthenticator
                 {
                     $this->logger->critical(
                         message: 'Пользователь не найден',
-                        context: [self::class.':'.__LINE__,]
+                        context: [self::class.':'.__LINE__,],
                     );
 
                     return null;

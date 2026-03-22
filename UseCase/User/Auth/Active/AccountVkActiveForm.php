@@ -35,7 +35,7 @@ final class AccountVkActiveForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        
+
         $builder->add('active', CheckboxType::class, [
             'required' => false,
         ]);

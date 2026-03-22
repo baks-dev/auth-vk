@@ -57,24 +57,9 @@ class AccountVk
         $this->id = new UserUid();
     }
 
-    public function setId(UserUid $id): self
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-
     public function __toString(): string
     {
         return (string) $this->id;
-    }
-
-    /**
-     * Идентификатор
-     */
-    public function getId(): UserUid
-    {
-        return $this->id;
     }
 
     /**
@@ -88,5 +73,19 @@ class AccountVk
     public function setEvent(AccountVkEventUid|AccountVkEvent $event): void
     {
         $this->event = $event instanceof AccountVkEvent ? $event->getId() : $event;
+    }
+
+    /**
+     * Идентификатор
+     */
+    public function getId(): UserUid
+    {
+        return $this->id;
+    }
+
+    public function setId(UserUid $id): self
+    {
+        $this->id = $id;
+        return $this;
     }
 }

@@ -52,7 +52,7 @@ final class AccountVkEditHandler extends AbstractHandler
         /* Отправить сообщение в шину */
         $this->messageDispatch->dispatch(
             message: new AccountVkMessage($this->main->getId(), $this->main->getEvent()),
-            transport: 'auth-vk'
+            transport: 'auth-vk',
         );
 
         return $this->main;

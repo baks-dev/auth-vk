@@ -56,7 +56,7 @@ class AccountVkEditHandlerTest extends KernelTestCase
         {
 
             $AccountVkEvent = $em->getRepository(AccountVkEvent::class)->find(
-                $AccountVk->getEvent()
+                $AccountVk->getEvent(),
             );
 
             if($AccountVkEvent instanceof AccountVkEvent)

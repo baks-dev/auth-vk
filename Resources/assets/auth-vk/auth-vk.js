@@ -22,16 +22,16 @@
  */
 executeFunc(function authVk()
 {
-    const authLink = document.getElementById('vk-auth');
+    const authLink = document.getElementById("vk-auth");
 
-    console.log(authLink)
+    console.log(authLink);
 
     if(typeof authLink === "undefined" || authLink === null)
     {
         return false;
     }
 
-    authLink.addEventListener('click', function(event)
+    authLink.addEventListener("click", function(event)
     {
         /** Закрываем модальное окно */
         const modal = document.getElementById("modal");
@@ -52,23 +52,24 @@ executeFunc(function authVk()
         const left = (screen.width - width) / 2;
         const top = (screen.height - height) / 2;
 
-        const features = `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
+        const features = `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`;
 
-        const authWindow = window.open(authUrl, 'vkAuth', features);
+        const authWindow = window.open(authUrl, "vkAuth", features);
 
         if(authWindow)
         {
             authWindow.focus();
-        } else
+        }
+        else
         {
-            alert('Не удалось открыть окно авторизации. Разрешите всплывающие окна.');
+            alert("Не удалось открыть окно авторизации. Разрешите всплывающие окна.");
         }
     });
 
-    window.addEventListener('message', function(event)
+    window.addEventListener("message", function(event)
     {
         /* Сообщение от js на странице /auth/vk */
-        if(event.data.type === 'VK_AUTH_SUCCESS')
+        if(event.data.type === "VK_AUTH_SUCCESS")
         {
             /* Редирект на главную */
             window.location.replace(window.location.origin);

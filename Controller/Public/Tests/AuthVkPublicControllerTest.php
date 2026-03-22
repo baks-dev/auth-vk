@@ -33,7 +33,7 @@ use Symfony\Component\DependencyInjection\Attribute\When;
 
 #[When(env: 'test')]
 #[Group('auth-vk')]
-final class AuthVkPublicControllerTest extends WebTestCase 
+final class AuthVkPublicControllerTest extends WebTestCase
 {
     private const string URL = '/vk/auth';
 

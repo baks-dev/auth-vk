@@ -39,16 +39,14 @@ final class VkAuthDTO implements AccountVkEventInterface
      */
     #[Assert\Uuid]
     private ?AccountVkEventUid $id = null;
+    private AccountVkActiveDTO $active;
+    private ?AccountVkInvariableDTO $invariable;
 
     public function setEvent(?AccountVkEventUid $id): self
     {
         $this->id = $id;
         return $this;
     }
-
-    private AccountVkActiveDTO $active;
-
-    private ?AccountVkInvariableDTO $invariable;
 
     public function getEvent(): ?AccountVkEventUid
     {

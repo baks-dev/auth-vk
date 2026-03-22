@@ -39,7 +39,7 @@ final class AccountVkDeleteForm extends AbstractType
         $builder->add(
             'account_vk_delete',
             SubmitType::class,
-            ['label' => 'Save', 'label_html' => true, 'attr' => ['class' => 'btn-danger']]
+            ['label' => 'Save', 'label_html' => true, 'attr' => ['class' => 'btn-danger']],
         );
     }
 

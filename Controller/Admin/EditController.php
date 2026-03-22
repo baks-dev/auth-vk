@@ -61,7 +61,7 @@ final class EditController extends AbstractController
             ->createForm(AccountVkEditForm::class, $AccountVkDTO, [
                 'action' => $this->generateUrl(
                     'auth-vk:admin.newedit.edit',
-                    ['id' => $AccountVkDTO->getEvent()]
+                    ['id' => $AccountVkDTO->getEvent()],
                 ),
             ])
             ->handleRequest($request);
@@ -79,7 +79,7 @@ final class EditController extends AbstractController
                 'page.edit',
                 $handle instanceof AccountVk ? 'success.edit' : 'danger.edit',
                 'auth-vk.admin',
-                $handle
+                $handle,
             );
 
             return $this->redirectToRoute('auth-vk:admin.index');
@@ -87,7 +87,7 @@ final class EditController extends AbstractController
 
         return $this->render([
             'form' => $form->createView(),
-            'name' => $AccountVkEvent->getInvariable()->getVkid()
+            'name' => $AccountVkEvent->getInvariable()->getVkid(),
         ]);
     }
 }

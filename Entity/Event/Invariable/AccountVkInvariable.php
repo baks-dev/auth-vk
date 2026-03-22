@@ -28,6 +28,7 @@ use BaksDev\Auth\Vk\Type\AuthVkIdentifier\VkIdentifier;
 use BaksDev\Core\Entity\EntityReadonly;
 use BaksDev\Users\User\Type\Id\UserUid;
 use Doctrine\ORM\Mapping as ORM;
+use InvalidArgumentException;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
@@ -93,7 +94,7 @@ class AccountVkInvariable extends EntityReadonly
             return parent::getDto($dto);
         }
 
-        throw new \InvalidArgumentException(sprintf('Class %s interface error', $dto::class));
+        throw new InvalidArgumentException(sprintf('Class %s interface error', $dto::class));
     }
 
     public function setEntity($dto): mixed
@@ -103,7 +104,7 @@ class AccountVkInvariable extends EntityReadonly
             return parent::setEntity($dto);
         }
 
-        throw new \InvalidArgumentException(sprintf('Class %s interface error', $dto::class));
+        throw new InvalidArgumentException(sprintf('Class %s interface error', $dto::class));
     }
 
 }

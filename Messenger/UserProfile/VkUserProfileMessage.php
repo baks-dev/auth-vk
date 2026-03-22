@@ -37,9 +37,10 @@ final class VkUserProfileMessage
     public function __construct(
         UserUid|string $id,
         VkUserInfoDTO|string $infoDTO,
-    ) {
+    )
+    {
         $this->id = (string) $id;
-        $this->username = $infoDTO->getFirstName() . ' ' . $infoDTO->getLastName();
+        $this->username = $infoDTO->getFirstName().' '.$infoDTO->getLastName();
     }
 
     public function getId(): UserUid

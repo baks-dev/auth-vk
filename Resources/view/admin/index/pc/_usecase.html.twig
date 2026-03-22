@@ -43,18 +43,18 @@
         {% endif %}
 
         {# Удалить #}
-         {% if  is_granted(ROLE~'_DELETE') or is_granted('ROLE_ADMIN') %}
-			<li class="list-group-item d-flex justify-content-between bg-transparent border-0 text-truncate rounded-5">
-				
-				<a href="{{ path('auth-vk:admin.delete', { id: item.event }) }}"
-						class="text-decoration-none text-dark w-100 modal-link disabled"
-						data-bs-toggle="modal"
-						data-bs-target="#modal"
-						title="{{ 'btn.delete'|trans({}, 'core.btn') }}">
-					{{ 'btn.delete'|trans({}, 'core.btn') }}
-				</a>
-			</li>
-		{% endif %}
+        {% if  is_granted(ROLE~'_DELETE') or is_granted('ROLE_ADMIN') %}
+            <li class="list-group-item d-flex justify-content-between bg-transparent border-0 text-truncate rounded-5">
+
+                <a href="{{ path('auth-vk:admin.delete', { id: item.event }) }}"
+                   class="text-decoration-none text-dark w-100 modal-link disabled"
+                   data-bs-toggle="modal"
+                   data-bs-target="#modal"
+                   title="{{ 'btn.delete'|trans({}, 'core.btn') }}">
+                    {{ 'btn.delete'|trans({}, 'core.btn') }}
+                </a>
+            </li>
+        {% endif %}
 
     </ul>
 </div>

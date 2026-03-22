@@ -4,13 +4,13 @@
 {% extends Template('/admin/base.html.twig') %}
 
 {% block title %}
-	{# Редактировать Vk аккаунт #}
-	{{ 'page.edit'|trans }}
+    {# Редактировать Vk аккаунт #}
+    {{ 'page.edit'|trans }}
 {% endblock %}
 
 
 {# ---- КОНТЕНТ-БЛОК ------------------------------------------------------------ #}
 {% block content %}
-	{{ include(_self|replace({ "template.html.twig": baks_settings.device~"/content.html.twig" })) }}
+    {{ include(_self|replace({ "template.html.twig": baks_settings.device~"/content.html.twig" })) }}
 {% endblock %}
 

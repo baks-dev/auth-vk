@@ -58,7 +58,7 @@ final class DeleteController extends AbstractController
         $form = $this->createForm(AccountVkDeleteForm::class, $AccountVkDeleteDTO, [
             'action' => $this->generateUrl(
                 'auth-vk:admin.delete',
-                ['id' => $AccountVkDeleteDTO->getEvent()]
+                ['id' => $AccountVkDeleteDTO->getEvent()],
             ),
         ]);
         $form->handleRequest($request);
@@ -75,7 +75,7 @@ final class DeleteController extends AbstractController
                 'page.delete',
                 $handle instanceof AccountVk ? 'success.delete' : 'danger.delete',
                 'auth-vk.admin',
-                $handle
+                $handle,
             );
 
             return $this->redirectToRoute('auth-vk:admin.index');
@@ -84,7 +84,7 @@ final class DeleteController extends AbstractController
 
         return $this->render([
             'form' => $form->createView(),
-            'name' => $AccountVkEvent->getInvariable()->getVkid()
+            'name' => $AccountVkEvent->getInvariable()->getVkid(),
         ]);
     }
 }

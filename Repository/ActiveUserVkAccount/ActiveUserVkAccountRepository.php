@@ -50,7 +50,7 @@ final readonly class ActiveUserVkAccountRepository implements ActiveUserVkAccoun
                 'invariable',
                 AccountVkEvent::class,
                 'event',
-                'event.id = invariable.event'
+                'event.id = invariable.event',
             );
 
         $dbal
@@ -59,7 +59,7 @@ final readonly class ActiveUserVkAccountRepository implements ActiveUserVkAccoun
                 'event',
                 AccountVkActive::class,
                 'account_vk_active',
-                'account_vk_active.event = event.id'
+                'account_vk_active.event = event.id',
             );
 
         return $dbal->fetchHydrate(ActiveUserVkAccountResult::class);

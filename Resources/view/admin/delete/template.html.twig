@@ -4,9 +4,9 @@
 {% extends Template('/admin/base.html.twig') %}
 
 {% block title %}
-	{{ 'page.delete'|trans }}
+    {{ 'page.delete'|trans }}
 {% endblock %}
 
 {% block content %}
-	{{ include(_self|replace({ "template.html.twig": baks_settings.device~"/content.html.twig" })) }}
+    {{ include(_self|replace({ "template.html.twig": baks_settings.device~"/content.html.twig" })) }}
 {% endblock %}

@@ -33,6 +33,7 @@ use Symfony\Contracts\Cache\ItemInterface;
 /**
  * Получение данных для авторизации
  * https://id.vk.ru/oauth2/auth
+ *
  * @see https://id.vk.com/about/business/go/docs/ru/vkid/latest/vk-id/connection/api-description#Poluchenie-tokena-ukazannym-sposobom
  */
 final class VkOAuthTokenRequest extends VkOAuth
@@ -51,7 +52,7 @@ final class VkOAuthTokenRequest extends VkOAuth
 
             $redirect_uri = $this->urlGenerator->generate(
                 name: self::REDIRECT_URI,
-                referenceType: CompiledUrlGenerator::ABSOLUTE_URL
+                referenceType: CompiledUrlGenerator::ABSOLUTE_URL,
             );
 
             $body = [

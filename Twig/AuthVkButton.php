@@ -44,12 +44,12 @@ class AuthVkButton extends AbstractExtension
             new TwigFunction(
                 'vk_auth_button',
                 [$this, 'vkButton'],
-                ['needs_environment' => true, 'is_safe' => ['html']]
+                ['needs_environment' => true, 'is_safe' => ['html']],
             ),
             new TwigFunction(
                 'vk_auth_button_template',
                 [$this, 'vkButtonTemplate'],
-                ['needs_environment' => true, 'is_safe' => ['html']]
+                ['needs_environment' => true, 'is_safe' => ['html']],
             ),
         ];
     }

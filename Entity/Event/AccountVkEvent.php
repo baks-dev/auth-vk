@@ -77,16 +77,15 @@ class AccountVkEvent extends EntityEvent
     #[ORM\OneToOne(targetEntity: AccountVkModify::class, mappedBy: 'event', cascade: ['all'], fetch: 'EAGER')]
     private AccountVkModify $modify;
 
-    public function getModify(): AccountVkModify
-    {
-        return $this->modify;
-    }
-
-
     public function __construct()
     {
         $this->id = new AccountVkEventUid();
         $this->modify = new AccountVkModify($this);
+    }
+
+    public function getModify(): AccountVkModify
+    {
+        return $this->modify;
     }
 
     public function __clone()
@@ -97,6 +96,14 @@ class AccountVkEvent extends EntityEvent
     public function __toString(): string
     {
         return (string) $this->id;
+    }
+
+    /**
+     * Идентификатор пользователя
+     */
+    public function setMain(AccountVk|UserUid $account): void
+    {
+        $this->account = $account instanceof AccountVk ? $account->getId() : $account;
     }
 
     /**
@@ -111,14 +118,6 @@ class AccountVkEvent extends EntityEvent
     {
         $this->id = $id;
         return $this;
-    }
-
-    /**
-     * Идентификатор пользователя
-     */
-    public function setMain(AccountVk|UserUid $account): void
-    {
-        $this->account = $account instanceof AccountVk ? $account->getId() : $account;
     }
 
     public function getMain(): ?UserUid

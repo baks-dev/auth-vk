@@ -33,9 +33,9 @@ use Symfony\Contracts\Cache\ItemInterface;
 /**
  * Получение данных Vk пользователя
  * https://id.vk.ru/oauth2/user_info
+ *
  * @see https://id.vk.com/about/business/go/docs/ru/vkid/latest/vk-id/connection/api-description#Poluchenie-nemaskirovannyh-dannyh
  */
-
 final class VkUserInfoRequest extends VkOAuth
 {
 
@@ -65,7 +65,7 @@ final class VkUserInfoRequest extends VkOAuth
                             'access_token' => $access_token,
                             'client_id' => $this->clientId,
                         ],
-                    ]
+                    ],
                 );
 
             if($response->getStatusCode() !== 200)

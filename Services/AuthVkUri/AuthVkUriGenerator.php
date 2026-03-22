@@ -44,6 +44,7 @@ final class AuthVkUriGenerator implements AuthVkUriGeneratorInterface
     /**
      * Генерация ссылки для авторизации
      * https://id.vk.ru/authorize?response_type=code
+     *
      * @see https://id.vk.com/about/business/go/docs/ru/vkid/latest/vk-id/connection/api-description#Zapros-koda-podtverzhdeniya-i-rabota-s-formoj-razresheniya-dostupov-polzovatelya
      */
     public function getVkAutUri(): string
@@ -52,7 +53,7 @@ final class AuthVkUriGenerator implements AuthVkUriGeneratorInterface
 
         $redirect_uri = $this->urlGenerator->generate(
             name: self::REDIRECT_URI,
-            referenceType: UrlGeneratorInterface::ABSOLUTE_URL
+            referenceType: UrlGeneratorInterface::ABSOLUTE_URL,
         );
 
         $str_uri_array = [

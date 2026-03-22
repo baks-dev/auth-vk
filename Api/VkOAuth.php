@@ -57,7 +57,7 @@ abstract class VkOAuth
                 'headers' =>
                     [
                         'Content-Type' => 'application/x-www-form-urlencoded',
-                    ]
+                    ],
             ])
                 ->withOptions([
                     'base_uri' => 'https://'.self::BASE_URI,
